@@ -27,6 +27,8 @@ function newton(f, n, startX, leftX, rightX, stepX, precision)
 
     fprintf("X0 = %f\n", Xi(1))
 
+    plot([Xi(1), Xi(1)], [0, f(Xi(1))], ":k")
+
     for i = 1:n
         
         Xi(i+1) = Xi(i) - f(Xi(i))/df(Xi(i));
@@ -47,6 +49,6 @@ function newton(f, n, startX, leftX, rightX, stepX, precision)
     fprintf("\n")
 
     for i = 2:n+1
-        fprintf("alpha%d = %.*f\n", i-1, precision, log(Xi(i) - result)/log(Xi(i-1) - result))
+        fprintf("alpha%d = %.*f\n", i-1, precision, log(abs(Xi(i) - result))/log(abs(Xi(i-1) - result)))
     end
 end
